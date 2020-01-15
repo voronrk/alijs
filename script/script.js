@@ -33,24 +33,32 @@ document.addEventListener('DOMContentLoaded', ()=> {
                         
         return card;
     };
-    goodsWrapper.appendChild(createCardGoods(1, 'Durts', 534, 'temp/archer.jpg')); //append child element (go end)
+    goodsWrapper.appendChild(createCardGoods(1, 'Durts', 534, 'temp/archer.jpg')); //append child element (to end)
     goodsWrapper.appendChild(createCardGoods(2, 'Фламинго', 3000, 'temp/flamingo.jpg'));
     goodsWrapper.append(createCardGoods(1, 'Socks', 10000, 'temp/socks.jpg'));
 
     const closeCart = (event) => {
         const target=event.target;
-        console.log(target);
-
-        if (target === cart || target.classList.contains('cart-close')) {
+        if (target === cart || target.classList.contains('cart-close') || event.keyCode==27) {
         cart.style.display='';
         //classList.toggle - remove if present, add if no present
     };
     };
 
     const openCart = () => {
-         cart.style.display='flex';
+        cart.style.display='flex';
     };
     
+    cartBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+    }, false);
+
+    wishlistBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+    }, false);
+
     cartBtn.addEventListener('click', openCart);
     cart.addEventListener('click', closeCart);
+    document.addEventListener('keydown', closeCart);
+
 });
